@@ -19,8 +19,8 @@ app.get('/api', (req, res) => {
     current_day: currentDay,
     utc_time: utcTime,
     track: track,
-    github_file_url: 'https://github.com/username/repo/blob/main/file_name.ext',
-    github_repo_url: 'https://github.com/username/repo',
+    github_file_url: 'https://github.com/wendy-wej/Hng-backend-task-one/blob/main/server.js',
+    github_repo_url: 'https://github.com/wendy-wej/Hng-backend-task-one',
     status_code: 200,
   };
 
