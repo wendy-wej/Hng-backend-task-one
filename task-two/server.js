@@ -6,7 +6,6 @@ const Person = require('./models/person_model')
 //middleware to understand json
 app.use(express.json())
 app.use(express.urlencoded({extended: false}))
-
 mongoose.set("strictQuery", false);
 mongoose.connect('mongodb+srv://admin:admin@hng-task-two.jjsfmiz.mongodb.net/hng-task-two?retryWrites=true&w=majority')
 .then(()=>{
@@ -17,84 +16,78 @@ mongoose.connect('mongodb+srv://admin:admin@hng-task-two.jjsfmiz.mongodb.net/hng
 }).catch((err)=>{
     console.log(err)
 })
-
 //ROUTES
 app.get('/', (req, res) =>{
     res.send("Hello World")
 })
 
-// Get all persons
-app.get('/api', async(req, res)=>{
-    try{
-        const person = await Person.find({});
-        res.status(200).json(person)
-    }catch(error){
-        console.log(error.message);
-        res.status(500).json({message: error.message})
-    }
-})
-
-
-// Get a single person by ID
-app.get('/api/:user_id', async(req, res)=>{
-    try{
-        const {user_id} = req.params;
-        const person = await Person.findById(user_id);
-        if(!person){
-            return res.status(404).json({message: `Person with ${user_id} not found`})
+// Get a single person by name (used as ID)
+app.get('/api/:name', async (req, res) => {
+    try {
+        const { name } = req.params;
+        const person = await Person.findOne({ name });
+        if (!person) {
+            return res.status(404).json({ message: `Person with name ${name} not found` });
         }
-        res.status(200).json(person)
-    }catch(error){
-        console.log(error.message);
-        res.status(500).json({message: error.message})
-    }
-})
-
-// Input a single person
-app.post('/api', async(req,res) =>{
-    try{
-        const person = await Person.create(req.body)
         res.status(200).json(person);
-
-    }catch(error){
+    } catch (error) {
         console.log(error.message);
-        res.status(500).json({message: error.message})
+        res.status(500).json({ message: error.message });
     }
-})
+});
 
-// Update a single person by ID
-app.put('/api/:user_id', async(req, res)=>{
-    try{
-        const {user_id} = req.params;
-        const person = await Person.findByIdAndUpdate(user_id, req.body)
+// Input a single person with name as the identifier
+app.post('/api', async (req, res) => {
+    try {
+        const person = await Person.create(req.body);
+        res.status(200).json(person);
+    } catch (error) {
+        console.log(error.message);
+        res.status(500).json({ message: error.message });
+    }
+});
 
-        //If person not found
-        if(!person){
-            return res.status(404).json({message: `Person with ${user_id} not found`})
+// Update a single person by name (used as ID)
+app.put('/api/:name', async (req, res) => {
+    try {
+        const { name } = req.params;
+        const person = await Person.findOneAndUpdate({ name }, req.body, { new: true });
+
+        if (!person) {
+            return res.status(404).json({ message: `Person with name ${name} not found` });
         }
-        const updatedPerson = await Person.findById(user_id)
-        res.status(500).json(updatedPerson)
-
-    }catch(error){
+        const updatedPerson = await Person.findOne({ name });
+        res.status(200).json(updatedPerson);
+    } catch (error) {
         console.log(error.message);
-        res.status(500).json({message: error.message});
+        res.status(500).json({ message: error.message });
     }
-})
+});
 
-//delete a single person
-app.delete('/api/:user_id', async(req, res)=>{
-    try{
-        const {user_id} = req.params;
-        const person = await Person.findByIdAndDelete(user_id);
+// Delete a single person by name (used as ID)
+app.delete('/api/:name', async (req, res) => {
+    try {
+        const { name } = req.params;
+        const person = await Person.findOneAndDelete({ name });
 
-        if(!person){
-            return res.status(404).json({message: `Person with ${id} is not found!`})
+        if (!person) {
+            return res.status(404).json({ message: `Person with name ${name} not found` });
         }
-        res.status(200).json({message: `Person has been deleted!`});
-
-    }catch(error){
+        res.status(200).json({ message: `Person with name ${name} has been deleted!` });
+    } catch (error) {
         console.log(error.message);
-        res.status(500).json({message: error.message})
+        res.status(500).json({ message: error.message });
     }
-})
+});
 
+// Search for persons by name
+app.get('/api/search/:name', async (req, res) => {
+    try {
+        const { name } = req.params;
+        const persons = await Person.find({ name });
+        res.status(200).json(persons);
+    } catch (error) {
+        console.log(error.message);
+        res.status(500).json({ message: error.message });
+    }
+});
