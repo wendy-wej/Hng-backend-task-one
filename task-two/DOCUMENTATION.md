@@ -71,15 +71,15 @@ The API provides the following endpoints for CRUD operations on the "Person" res
   - Add a new person to the database.
 
 - **Read a Person**:
-  - **GET /api/{name}**
+  - **GET /api/{user_id}**
   - Retrieve details of a person by name.
 
 - **Update a Person**:
-  - **PUT /api/{name}**
+  - **PUT /api/{user_id}**
   - Modify details of an existing person by name.
 
 - **Delete a Person**:
-  - **DELETE /api/{name}**
+  - **DELETE /api/{user_id}**
   - Remove a person from the database by name.
 
 ---
