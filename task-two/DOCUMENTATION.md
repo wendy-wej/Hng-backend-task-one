@@ -71,15 +71,15 @@ The API provides the following endpoints for CRUD operations on the "Person" res
   - Add a new person to the database.
 
 - **Read a Person**:
-  - **GET /api/{user_id}**
+  - **GET /api/{_id}**
   - Retrieve details of a person by name.
 
 - **Update a Person**:
-  - **PUT /api/{user_id}**
+  - **PUT /api/{_id}**
   - Modify details of an existing person by name.
 
 - **Delete a Person**:
-  - **DELETE /api/{user_id}**
+  - **DELETE /api/{_id}**
   - Remove a person from the database by name.
 
 ---
@@ -87,6 +87,9 @@ The API provides the following endpoints for CRUD operations on the "Person" res
 ## Request/Response Formats
 
 ### Create a Person (POST /api/)
+```bash
+https://wendy-hng-backend-two.onrender.com/api/
+```
 
 **Request Format:**
 
@@ -112,3 +115,81 @@ The API provides the following endpoints for CRUD operations on the "Person" res
     "__v": 0
 }
 ```
+
+### Read a Person (GET /api/{_id})
+```bash
+https://wendy-hng-backend-two.onrender.com/api/4/
+```
+
+**Response Format (Success - 200):**
+
+```json
+{
+    "age": 23,
+    "_id": 4,
+    "name": "Chinwendu",
+    "track": "backend",
+    "createdAt": "2023-09-13T19:59:14.784Z",
+    "updatedAt": "2023-09-13T19:59:14.784Z",
+    "__v": 0
+}
+```
+
+**Response Format (Not Found - 404):**
+
+```json
+{
+    "message": "Person with 5 not found"
+}
+```
+
+### Update a Person (PUT /api/{_id})
+```bash
+https://wendy-hng-backend-two.onrender.com/api/4/
+```
+**Request Format:**
+
+```json
+{
+    "track": "fullstack"
+}
+```
+
+**Response Format (Success - 200):**
+
+```json
+{
+    "age": 23,
+    "_id": 4,
+    "name": "Chinwendu",
+    "track": "fullstack",
+    "createdAt": "2023-09-13T19:59:14.784Z",
+    "updatedAt": "2023-09-13T20:15:22.163Z",
+    "__v": 0
+}
+```
+
+### Delete a Person (DELETE /api/{_id})
+```bash
+https://wendy-hng-backend-two.onrender.com/api/4/
+```
+
+**Response Format (Success - 200):**
+
+
+```json
+{
+    "message": "Person has been deleted!"
+}
+```
+
+**Response Format (Not Found - 404):**
+
+```json
+{
+    "message": "id is not defined"
+}
+```
+
+
+
