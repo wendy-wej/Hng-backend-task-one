@@ -18,3 +18,97 @@ This repository provides a simple REST API for managing a person's records, allo
 - [Sample API Usage](#sample-api-usage)
 
 ---
+## Prerequisites
+
+Before you begin, ensure you have met the following requirements:
+
+- Node.js installed.
+- Git installed (for cloning the repository).
+- A code editor or IDE of your choice.
+
+---
+
+## Getting Started
+
+Follow these steps to set up and run the API locally.
+
+### 1. Clone the Repository
+
+Clone this repository to your system:
+
+```bash
+https://github.com/wendy-wej/Hng-backend-tasks.git
+cd task-two
+```
+
+### 2. Install Dependencies
+
+Install the required Python dependencies using `npm`:
+
+```bash
+npm install
+```
+
+This will install Express.js, Mongodb, Mongoose, Body-parser and other neccessary packages.
+
+### 3. Run the API Locally
+
+To run the API locally, use the following command:
+
+```bash
+npm run start
+```
+
+This will start the API server, and it will be available at [127.0.0.1:3000](http://127.0.0.1:3000/).
+
+---
+## API Endpoints
+
+The API provides the following endpoints for CRUD operations on the "Person" resource:
+
+- **Create a Person**:
+  - **POST /api/**
+  - Add a new person to the database.
+
+- **Read a Person**:
+  - **GET /api/{name}**
+  - Retrieve details of a person by name.
+
+- **Update a Person**:
+  - **PUT /api/{name}**
+  - Modify details of an existing person by name.
+
+- **Delete a Person**:
+  - **DELETE /api/{name}**
+  - Remove a person from the database by name.
+
+---
+
+## Request/Response Formats
+
+### Create a Person (POST /api/)
+
+**Request Format:**
+
+```json
+{
+    "_id":4,
+    "name": "Chinwendu",
+    "age": 23,
+    "track":"backend"
+}
+```
+
+**Response Format (Success - 200):**
+
+```json
+{
+    "age": 23,
+    "_id": 4,
+    "name": "Chinwendu",
+    "track": "backend",
+    "createdAt": "2023-09-13T19:59:14.784Z",
+    "updatedAt": "2023-09-13T19:59:14.784Z",
+    "__v": 0
+}
+```
