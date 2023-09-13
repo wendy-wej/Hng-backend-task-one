@@ -2,7 +2,7 @@
 
 This repository provides a simple REST API for managing a person's records, allowing you to perform CRUD (Create, Read, Update, Delete) operations. This README.md file contains detailed instructions on setting up, running, and utilizing the API.
 
-> LIVE API Endpoint is https://hgnxbackend-prmpsmart.b4a.run/api
+> LIVE API Endpoint is https://wendy-hng-backend-two.onrender.com/
 >
 > For the documentation go to [DOCUMENTATION.md](DOCUMENTATION.md)
 >Routes can be found at [server.js](server.js)
