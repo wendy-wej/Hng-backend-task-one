@@ -7,11 +7,15 @@ const Person = require('./models/person_model')
 app.use(express.json())
 app.use(express.urlencoded({extended: false}))
 mongoose.set("strictQuery", false);
-mongoose.connect('mongodb+srv://admin:admin@hng-task-two.jjsfmiz.mongodb.net/hng-task-two?retryWrites=true&w=majority')
+mongoose.connect('mongodb+srv://admin:admin@hng-task-two.jjsfmiz.mongodb.net/hng-task-two?retryWrites=true&w=majority', {
+    useNewUrlParser: true,
+    useUnifiedTopology: true,
+    useCreateIndex: true, // Add this option to remove deprecation warning
+})
 .then(()=>{
-    app.listen(3000,()=>{
-        console.log('HNG API is connected to MongoDB and running on port 3000')
-    })
+    // app.listen(3000,()=>{
+    //     console.log('HNG API is connected to MongoDB and running on port 3000')
+    // })
     console.log('Connected to  Mongodb database')
 }).catch((err)=>{
     console.log(err)

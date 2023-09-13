@@ -16,6 +16,7 @@ This repository provides a simple REST API for managing a person's records, allo
 - [API Endpoints](#api-endpoints)
 - [Request/Response Formats](#requestresponse-formats)
 - [Sample API Usage](#sample-api-usage)
+- [Running Automated Tests](#running-automated-tests)
 
 ---
 ## Prerequisites
@@ -191,4 +192,32 @@ https://wendy-hng-backend-two.onrender.com/api/Chinwendu/
 ```
 
 
+---
+## Running Automated Tests
+To test, make sure you have Mocha and `supertest` installed
 
+```bash
+npm install mocha supertest --save-dev
+```
+
+To run test:
+```bash
+npx mocha test.js
+```
+
+
+### Expected Output
+> CRUD Operations
+> Connected to  Mongodb database
+> HNG API is connected to MongoDB and running on port 3000
+>    ✔ should create a new person (390ms)
+>    ✔ should fetch details of a person by ID (223ms)
+> (node:51348) DeprecationWarning: Mongoose: `findOneAndUpdate()` and `findOneAndDelete()` without the `useFindAndModify` option set to false are deprecated. See: https://mongoosejs.com/docs/5.x/docs/deprecations.html#findandmodify
+> (Use `node --trace-deprecation ...` to show where the warning was created)
+>    ✔ should update the details of a person by ID (429ms)
+>    ✔ should delete a person by ID (205ms)
+>
+>
+>  4 passing (7s)
+
+---
