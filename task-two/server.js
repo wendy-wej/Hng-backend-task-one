@@ -7,12 +7,23 @@ const Person = require('./models/person_model')
 app.use(express.json())
 app.use(express.urlencoded({extended: false}))
 
+mongoose.set("strictQuery", false);
+mongoose.connect('mongodb+srv://admin:admin@hng-task-two.jjsfmiz.mongodb.net/hng-task-two?retryWrites=true&w=majority')
+.then(()=>{
+    app.listen(3000,()=>{
+        console.log('HNG API is connected to MongoDB and running on port 3000')
+    })
+    console.log('Connected to  Mongodb database')
+}).catch((err)=>{
+    console.log(err)
+})
+
 //ROUTES
 app.get('/', (req, res) =>{
     res.send("Hello World")
 })
 
-//get all persons
+// Get all persons
 app.get('/api', async(req, res)=>{
     try{
         const person = await Person.find({});
@@ -24,11 +35,14 @@ app.get('/api', async(req, res)=>{
 })
 
 
-//get a single person
+// Get a single person by ID
 app.get('/api/:user_id', async(req, res)=>{
     try{
         const {user_id} = req.params;
         const person = await Person.findById(user_id);
+        if(!person){
+            return res.status(404).json({message: `Person with ${user_id} not found`})
+        }
         res.status(200).json(person)
     }catch(error){
         console.log(error.message);
@@ -36,7 +50,7 @@ app.get('/api/:user_id', async(req, res)=>{
     }
 })
 
-//input a single person
+// Input a single person
 app.post('/api', async(req,res) =>{
     try{
         const person = await Person.create(req.body)
@@ -48,7 +62,7 @@ app.post('/api', async(req,res) =>{
     }
 })
 
-//update a single person
+// Update a single person by ID
 app.put('/api/:user_id', async(req, res)=>{
     try{
         const {user_id} = req.params;
@@ -84,13 +98,3 @@ app.delete('/api/:user_id', async(req, res)=>{
     }
 })
 
-mongoose.set("strictQuery", false);
-mongoose.connect('mongodb+srv://admin:admin@hng-task-two.jjsfmiz.mongodb.net/hng-task-two?retryWrites=true&w=majority')
-.then(()=>{
-    app.listen(3000,()=>{
-        console.log('HNG API is connected to MongoDB and running on port 3000')
-    })
-    console.log('Connected to  Mongodb database')
-}).catch((err)=>{
-    console.log(err)
-})
