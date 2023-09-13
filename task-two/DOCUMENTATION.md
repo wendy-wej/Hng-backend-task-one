@@ -95,7 +95,6 @@ https://wendy-hng-backend-two.onrender.com/api/
 
 ```json
 {
-    "_id":4,
     "name": "Chinwendu",
     "age": 23,
     "track":"backend"
@@ -107,18 +106,18 @@ https://wendy-hng-backend-two.onrender.com/api/
 ```json
 {
     "age": 23,
-    "_id": 4,
+    "_id": "65023665d3f7ee0035cc5660",
     "name": "Chinwendu",
     "track": "backend",
-    "createdAt": "2023-09-13T19:59:14.784Z",
-    "updatedAt": "2023-09-13T19:59:14.784Z",
+    "createdAt": "2023-09-13T22:23:33.506Z",
+    "updatedAt": "2023-09-13T22:23:33.506Z",
     "__v": 0
 }
 ```
 
-### Read a Person (GET /api/{_id})
+### Read a Person (GET /api/:name)
 ```bash
-https://wendy-hng-backend-two.onrender.com/api/4/
+https://wendy-hng-backend-two.onrender.com/api/Chinwendu/
 ```
 
 **Response Format (Success - 200):**
@@ -126,11 +125,11 @@ https://wendy-hng-backend-two.onrender.com/api/4/
 ```json
 {
     "age": 23,
-    "_id": 4,
+    "_id": "65023665d3f7ee0035cc5660",
     "name": "Chinwendu",
     "track": "backend",
-    "createdAt": "2023-09-13T19:59:14.784Z",
-    "updatedAt": "2023-09-13T19:59:14.784Z",
+    "createdAt": "2023-09-13T22:23:33.506Z",
+    "updatedAt": "2023-09-13T22:23:33.506Z",
     "__v": 0
 }
 ```
@@ -139,13 +138,13 @@ https://wendy-hng-backend-two.onrender.com/api/4/
 
 ```json
 {
-    "message": "Person with 5 not found"
+    "message": "Person with name Jumia not found"
 }
 ```
 
-### Update a Person (PUT /api/{_id})
+### Update a Person (PUT /api/:name)
 ```bash
-https://wendy-hng-backend-two.onrender.com/api/4/
+https://wendy-hng-backend-two.onrender.com/api/Chinwendu/
 ```
 **Request Format:**
 
@@ -160,18 +159,18 @@ https://wendy-hng-backend-two.onrender.com/api/4/
 ```json
 {
     "age": 23,
-    "_id": 4,
+    "_id": "65023665d3f7ee0035cc5660",
     "name": "Chinwendu",
     "track": "fullstack",
-    "createdAt": "2023-09-13T19:59:14.784Z",
-    "updatedAt": "2023-09-13T20:15:22.163Z",
+    "createdAt": "2023-09-13T22:23:33.506Z",
+    "updatedAt": "2023-09-13T22:28:31.524Z",
     "__v": 0
 }
 ```
 
 ### Delete a Person (DELETE /api/{_id})
 ```bash
-https://wendy-hng-backend-two.onrender.com/api/4/
+https://wendy-hng-backend-two.onrender.com/api/Chinwendu/
 ```
 
 **Response Format (Success - 200):**
@@ -179,7 +178,7 @@ https://wendy-hng-backend-two.onrender.com/api/4/
 
 ```json
 {
-    "message": "Person has been deleted!"
+    "message": "Person with name Chinwendu has been deleted!"
 }
 ```
 
@@ -187,7 +186,7 @@ https://wendy-hng-backend-two.onrender.com/api/4/
 
 ```json
 {
-    "message": "id is not defined"
+    "message": "Person with name Chinwendu not found"
 }
 ```
 
