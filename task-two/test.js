@@ -5,6 +5,14 @@ const app = require('./server'); // Import your Express app
 describe('CRUD Operations', function () {
     let personId;
 
+    before(function (done) {
+        // Start your Express app and establish the database connection here
+        app.listen(3000, function () {
+            console.log('HNG API is connected to MongoDB and running on port 3000');
+            done(); // Call done when the app is ready to start testing
+        });
+    });
+
     it('should create a new person', async function () {
         const response = await request(app)
             .post('/api')
