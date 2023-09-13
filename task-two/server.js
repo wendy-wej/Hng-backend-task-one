@@ -33,7 +33,7 @@ app.get('/api/:name', async (req, res) => {
         if (!person) {
             return res.status(404).json({ message: `Person with name ${name} not found` });
         }
-        res.status(200).json(person);
+        res.status(200).json(person)
     } catch (error) {
         console.log(error.message);
         res.status(500).json({ message: error.message });
