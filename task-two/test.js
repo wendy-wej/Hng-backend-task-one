@@ -8,7 +8,7 @@ describe('CRUD Operations', function () {
     let personId = 'Adrien Agreste';
 
     before(function (done) {
-        this.timeout(11000); 
+        this.timeout(2000); 
         mongoose.connect('mongodb+srv://admin:admin@hng-task-two.jjsfmiz.mongodb.net/hng-task-two?retryWrites=true&w=majority', {
             useNewUrlParser: true,
             useUnifiedTopology: true,

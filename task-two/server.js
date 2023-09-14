@@ -13,9 +13,9 @@ mongoose.connect('mongodb+srv://admin:admin@hng-task-two.jjsfmiz.mongodb.net/hng
     useCreateIndex: true, // Add this option to remove deprecation warning
 })
 .then(()=>{
-    // app.listen(3000,()=>{
-    //     console.log('HNG API is connected to MongoDB and running on port 3000')
-    // })
+    app.listen(3000,()=>{
+        console.log('HNG API is connected to MongoDB and running on port 3000')
+    })
     console.log('Connected to  Mongodb database')
 }).catch((err)=>{
     console.log(err)
