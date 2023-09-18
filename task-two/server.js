@@ -3,11 +3,17 @@ const mongoose = require('mongoose')
 const app = express()
 const Person = require('./models/person_model')
 
+// Import the dotenv package
+require('dotenv').config();
+
+
+const databaseUrl = process.env.DATABASE_URL;
+
 //middleware to understand json
 app.use(express.json())
 app.use(express.urlencoded({extended: false}))
 mongoose.set("strictQuery", false);
-mongoose.connect('mongodb+srv://admin:admin@hng-task-two.jjsfmiz.mongodb.net/hng-task-two?retryWrites=true&w=majority', {
+mongoose.connect(databaseUrl, {
     useNewUrlParser: true,
     useUnifiedTopology: true,
     useCreateIndex: true, // Add this option to remove deprecation warning
